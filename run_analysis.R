@@ -7,7 +7,7 @@ setwd("~/Coursera/Course3_Week4/UCI HAR Dataset")
 #-------------------------------------------------------------------------------------
 
 ###Loading data : the training data
-#-------------------------------
+#----------------------------------
 features<- read.table('./features.txt',header=FALSE)
 activity_labels <- read.table('./activity_labels.txt',header=FALSE)
 subject_train <- read.table('./subject_train.txt',header=FALSE) 
@@ -65,14 +65,11 @@ SamsungData2<-merge(SamsungData, activity_labels, by = "ActId")
 #Already named on 1, and by cbinding data on SamsungData creating processing
 
 
-##5-5.From the data set in step 4, creates a second, independent tidy data set with the average 
-#of each variable for each activity and each subject.
+##5- AVERAGE TIDY DATA SET BASED ON ACTIVITIES AND SUBJECTS
 #-------------------------------------------------------------------------------------
 
 library(plyr)
 MeanData <- aggregate(. ~SubjId + ActId, SamsungData2, mean) 
-
-
-write.table(averages_data, "averages_data.txt", row.name=FALSE) 
+write.table(MeanData, "Tidy_MeanData.txt", row.names=FALSE,sep='\t') 
 
 
