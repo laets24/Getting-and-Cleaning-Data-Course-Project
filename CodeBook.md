@@ -15,12 +15,12 @@ filter with 0.3 Hz cutoff frequency was used. From each window, a vector of feat
 domain.
 
 
-#DATA SOURCE
+DATA SOURCE
 The data source is downloaded following this link
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-#1-MERGE THE INITIAL DATA
-#-------------------------------------------------------------------------------------
+###1-MERGE THE INITIAL DATA
+---------------------------
 Data contained in these datasets : 
 x_train ,  y_train ,  x_test ,  y_test ,  subject_train  and  subject_test
 
@@ -40,26 +40,26 @@ x_train ,  y_train ,  x_test ,  y_test ,  subject_train  and  subject_test
 > Then we create 3 datasets by rbinding respectively the Xs, Ys and Subjects datasets
 
 
-#2-EXTRACT THE COLUMNS FOR MEAN AND STANDARD DEVIATIONS MEASURES
-#-------------------------------------------------------------------------------------
+###2-EXTRACT THE COLUMNS FOR MEAN AND STANDARD DEVIATIONS MEASURES
+------------------------------------------------------------------
 
 A vector is created from features dataset and greps the correct names containing mean or std (standard deviation). The x_data dataset
 is then subsetting with that and we give the right names using the features dataset
 A news dataset is created (SamsungData) by cbinding the subject_data, y_data and the last x_data datasets
 
 
-#3-RENAMING ACTIVITIES IN THE DATASET
-#-------------------------------------------------------------------------------------
+###3-RENAMING ACTIVITIES IN THE DATASET
+------------------------------------
 We Put the ActType column from activity_labels into SamsungData by using the merge function between activity_labels dataset and SamsungData
 bases on ActId
 
-#4-DESCRIPTIVE VARIABLE NAMES
-#-------------------------------------------------------------------------------------
+###4-DESCRIPTIVE VARIABLE NAMES
+-------------------------------
 Already named on 1, and by cbinding data on SamsungData creating processing
 
 
-##5- AVERAGE TIDY DATA SET BASED ON ACTIVITIES AND SUBJECTS
-#-------------------------------------------------------------------------------------
+###5- AVERAGE TIDY DATA SET BASED ON ACTIVITIES AND SUBJECTS
+------------------------------------------------------------
 A new dataset is created by using the aggregate function of the plyr library and based on the mean for each subject and each activity : 
 We have 30 subjects and 6 activities so the new dataset contains 180 rows. The output file is called Tidy_MeanData.txt 
 
