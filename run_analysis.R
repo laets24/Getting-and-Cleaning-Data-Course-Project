@@ -15,10 +15,10 @@ x_train <- read.table('./x_train.txt',header=FALSE)
 y_train <- read.table('./y_train.txt',header=FALSE)
 
 ## Putting the labels into X_train and y_train
-colnames(activity_labels)<- c('ActId','ActType')
-colnames(subject_train)<- "SubjId"
+colnames(activity_labels)<- c('activityNum','ActivityType')
+colnames(subject_train)<- "subject"
 colnames(x_train)<-features[,2]
-colnames(y_train) = "ActId"
+colnames(y_train) = "activityNum"
 
 ###Loading data : the test data
 #------------------------------
@@ -28,9 +28,9 @@ X_test<-read.table('./X_test.txt',header=FALSE)
 y_test<-read.table('./y_test.txt',header=FALSE)
 
 ## Put the labels into X_test and y_test
-colnames(subject_test)<-"SubjId"
+colnames(subject_test)<-"subject"
 colnames(X_test)<-features[,2] 
-colnames(y_test)<-"ActId"
+colnames(y_test)<-"activityNum"
 
 ###creating the datasets
 #------------------------------
@@ -57,19 +57,28 @@ SamsungData<-cbind(subject_data,y_data,x_data)
 ##3-RENAMING ACTIVITIES IN THE DATASET
 #-------------------------------------------------------------------------------------
 #Putting the ActType column from activity_labels into SamsungData
-SamsungData2<-merge(SamsungData, activity_labels, by = "ActId")
+SamsungData2<-merge(SamsungData, activity_labels, by = "activityNum")
 
 
 ##4-DESCRIPTIVE VARIABLE NAMES
 #-------------------------------------------------------------------------------------
-#Already named on 1, and by cbinding data on SamsungData creating processing
+
+head(str(SamsungData2),2)
+names(SamsungData2)<-gsub("std()", "SD", names(SamsungData2))
+names(SamsungData2)<-gsub("mean()", "MEAN", names(SamsungData2))
+names(SamsungData2)<-gsub("^t", "time", names(SamsungData2))
+names(SamsungData2)<-gsub("^f", "frequency", names(SamsungData2))
+names(SamsungData2)<-gsub("Acc", "Accelerometer", names(SamsungData2))
+names(SamsungData2)<-gsub("Gyro", "Gyroscope", names(SamsungData2))
+names(SamsungData2)<-gsub("Mag", "Magnitude", names(SamsungData2))
+names(SamsungData2)<-gsub("BodyBody", "Body", names(SamsungData2))
 
 
 ##5- AVERAGE TIDY DATA SET BASED ON ACTIVITIES AND SUBJECTS
 #-------------------------------------------------------------------------------------
 
 library(plyr)
-MeanData <- aggregate(. ~SubjId + ActId, SamsungData2, mean) 
+MeanData <- aggregate(. ~subject + activityNum, SamsungData2, mean) 
 write.table(MeanData, "Tidy_MeanData.txt", row.names=FALSE,sep='\t') 
 
 

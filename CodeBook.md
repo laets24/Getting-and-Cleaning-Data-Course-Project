@@ -25,12 +25,12 @@ Data contained in these datasets :
 x_train ,  y_train ,  x_test ,  y_test ,  subject_train  and  subject_test
 
 > activity_labels dataset : 
-    ActId : Identify the activity type
-    ActType : Type of activity
+    activityNum : Identify the activity type
+    ActivityType : Label od type of activity
 
 
 > subject_train dataset : 
-    SubjId : identifies the subject
+    subject : identifies the subject
 
 > Xs and Ys datasets
     Features[,2] : the features come from the features dataset and we include on the Xs datasets
@@ -55,7 +55,7 @@ bases on ActId
 
 ###4-DESCRIPTIVE VARIABLE NAMES
 -------------------------------
-Already named on 1, and by cbinding data on SamsungData creating processing
+Renaming variables with appropriate labels
 
 
 ###5- AVERAGE TIDY DATA SET BASED ON ACTIVITIES AND SUBJECTS
