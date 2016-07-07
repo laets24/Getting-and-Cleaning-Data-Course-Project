@@ -63,7 +63,6 @@ SamsungData2<-merge(SamsungData, activity_labels, by = "activityNum")
 ##4-DESCRIPTIVE VARIABLE NAMES
 #-------------------------------------------------------------------------------------
 
-head(str(SamsungData2),2)
 names(SamsungData2)<-gsub("std()", "SD", names(SamsungData2))
 names(SamsungData2)<-gsub("mean()", "MEAN", names(SamsungData2))
 names(SamsungData2)<-gsub("^t", "time", names(SamsungData2))
